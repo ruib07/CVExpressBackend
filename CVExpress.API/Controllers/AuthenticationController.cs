@@ -48,6 +48,19 @@ namespace CVExpress.API.Controllers
                 return Unauthorized("Dados inválidos.");
             }
 
+            var userData = new
+            {
+                user.Id,
+                user.FullName,
+                user.BirtDate,
+                user.Location,
+                user.Country,
+                user.Nationality,
+                user.Email,
+                user.PhoneNumber,
+                user.Password,
+            };
+
             var userIssuer = _jwtSettings.Issuer;
             var userAudience = _jwtSettings.Audience;
             var userKey = Encoding.ASCII.GetBytes(_jwtSettings.Key);
@@ -55,24 +68,32 @@ namespace CVExpress.API.Controllers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim("Id", Guid.NewGuid().ToString()),
-                    new Claim(ClaimTypes.Role, "User"),
-                    new Claim(JwtRegisteredClaimNames.Sub, loginUserRequest.Email),
-                    new Claim(JwtRegisteredClaimNames.Email, "a@a.pt"),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                }),
+            new Claim("Id", userData.Id.ToString()),
+            new Claim(ClaimTypes.Role, "User"),
+            new Claim(JwtRegisteredClaimNames.Sub, userData.Email),
+            new Claim("FullName", userData.FullName),
+            new Claim("BirtDate", userData.BirtDate.ToString()),
+            new Claim("Location", userData.Location),
+            new Claim("Country", userData.Country),
+            new Claim("Nationality", userData.Nationality),
+            new Claim("PhoneNumber", userData.PhoneNumber.ToString()),
+            new Claim("Password", userData.Password),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        }),
                 Issuer = userIssuer,
                 Audience = userAudience,
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(userKey),
                     SecurityAlgorithms.HmacSha256Signature)
             };
+
             var userTokenHandler = new JwtSecurityTokenHandler();
             var userToken = userTokenHandler.CreateToken(userTokenDescriptor);
             var userJwtToken = userTokenHandler.WriteToken(userToken);
 
             return Ok(new LoginUserResponse(userJwtToken));
         }
+
 
         [AllowAnonymous]
         [HttpPost("/adminlogin")]

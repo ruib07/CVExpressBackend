@@ -19,7 +19,7 @@ namespace CVExpress.API.Controllers
             _experienceService = experienceService;
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = "AdminAndUser")]
         // GET experiences
         [HttpGet]
         [ProducesResponseType(typeof(List<ExperienceEfo>), StatusCodes.Status200OK)]

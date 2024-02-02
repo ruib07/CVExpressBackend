@@ -19,7 +19,7 @@ namespace CVExpress.API.Controllers
             _usersService = usersService;
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = "AdminAndUser")]
         // GET users
         [HttpGet]
         [ProducesResponseType(typeof(List<UsersEfo>), StatusCodes.Status200OK)]

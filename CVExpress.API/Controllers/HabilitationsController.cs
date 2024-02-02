@@ -19,7 +19,7 @@ namespace CVExpress.API.Controllers
             _habilitationsService = habilitationsService;
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = "AdminAndUser")]
         // GET habilitations
         [HttpGet]
         [ProducesResponseType(typeof(List<HabilitationsEfo>), StatusCodes.Status200OK)]
