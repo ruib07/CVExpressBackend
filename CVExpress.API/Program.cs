@@ -19,6 +19,7 @@ builder.Services.AddScoped<IRegisterUsersService, RegisterUsersService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IHabilitationsService, HabilitationsService>();
 builder.Services.AddScoped<IExperienceService, ExperienceService>();
+builder.Services.AddScoped<IContactsService, ContactsService>();
 
 builder.Services.AddAuthorization(options =>
 {

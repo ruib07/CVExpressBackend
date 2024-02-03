@@ -48,6 +48,16 @@ namespace CVExpress.Services
             .UsingRegistrationStrategy(RegistrationStrategy.Skip)
             .AsImplementedInterfaces()
             .WithScopedLifetime());
+
+            services
+            .Scan(scan => scan.FromAssemblies(typeof(ContactsService).Assembly)
+            .AddClasses(classe => classe.Where(p =>
+                                               p.Name != null &&
+                                               p.Name.EndsWith("Service") &&
+                                               !p.IsInterface))
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsImplementedInterfaces()
+            .WithScopedLifetime());
         }
     }
 }

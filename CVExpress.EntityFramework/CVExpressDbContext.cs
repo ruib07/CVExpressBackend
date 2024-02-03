@@ -12,6 +12,7 @@ namespace CVExpress.EntityFramework
         public DbSet<UsersEfo> Users { get; set; }
         public DbSet<HabilitationsEfo> Habilitations { get; set; }
         public DbSet<ExperienceEfo> Experiences { get; set; }
+        public DbSet<ContactsEfo> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +20,7 @@ namespace CVExpress.EntityFramework
             modelBuilder.ApplyConfiguration(new UsersEfc());
             modelBuilder.ApplyConfiguration(new HabilitationsEfc());
             modelBuilder.ApplyConfiguration(new ExperienceEfc());
+            modelBuilder.ApplyConfiguration(new ContactsEfc());
         }
     }
 }
