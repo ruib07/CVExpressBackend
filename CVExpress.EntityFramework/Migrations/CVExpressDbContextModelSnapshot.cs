@@ -53,13 +53,7 @@ namespace CVExpress.EntityFramework.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("User_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("User_Id");
 
                     b.ToTable("Contacts", (string)null);
                 });
@@ -247,17 +241,6 @@ namespace CVExpress.EntityFramework.Migrations
                         .IsUnique();
 
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("CVExpress.Entities.Efos.ContactsEfo", b =>
-                {
-                    b.HasOne("CVExpress.Entities.Efos.UsersEfo", "User")
-                        .WithMany()
-                        .HasForeignKey("User_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CVExpress.Entities.Efos.ExperienceEfo", b =>

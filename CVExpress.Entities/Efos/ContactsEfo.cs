@@ -11,10 +11,5 @@ namespace CVExpress.Entities.Efos
         public int PhoneNumber { get; set; }
         public string Subject { get; set; } = string.Empty;
         public string Message { get; set; } = string.Empty;
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int User_Id { get; set; }
-
-        public UsersEfo User { get; set; }
     }
 }

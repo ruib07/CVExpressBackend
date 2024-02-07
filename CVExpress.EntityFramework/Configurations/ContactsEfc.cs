@@ -16,12 +16,6 @@ namespace CVExpress.EntityFramework.Configurations
             builder.Property(p => p.PhoneNumber).IsRequired();
             builder.Property(p => p.Subject).IsRequired().HasMaxLength(50);
             builder.Property(p => p.Message).IsRequired().HasMaxLength(250);
-            builder.Property(p => p.User_Id).IsRequired().ValueGeneratedOnAdd();
-
-            builder.HasOne(p => p.User)
-                .WithMany()
-                .HasForeignKey(p => p.User_Id)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
