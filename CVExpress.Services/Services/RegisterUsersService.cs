@@ -34,6 +34,19 @@ namespace CVExpress.Services.Services
             return registerUser;
         }
 
+        public async Task<RegisterUsersEfo> GetRegisterUserByEmail(string email)
+        {
+            RegisterUsersEfo? registerUser = await _context.RegisterUsers
+                .FirstOrDefaultAsync(ru => ru.Email == email);
+
+            if (registerUser == null)
+            {
+                throw new Exception("Registo de utilizador não encontrado!");
+            }
+
+            return registerUser;
+        }
+
         public async Task<RegisterUsersEfo> SendRegisterUser(RegisterUsersEfo registerUser)
         {
             try

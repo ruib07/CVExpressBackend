@@ -61,6 +61,26 @@ namespace CVExpress.API.Controllers
             return StatusCode(StatusCodes.Status200OK, registerUser);
         }
 
+        // GET registerusers/getemail/{email}
+        [HttpGet("getemail/{email}")]
+        [ProducesResponseType(typeof(RegisterUsersEfo), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RegisterUsersEfo), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(RegisterUsersEfo), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RegisterUsersEfo), StatusCodes.Status500InternalServerError)]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [Produces(MediaTypeNames.Application.Json)]
+        public async Task<IActionResult> GetRegisterUserByEmail(string email)
+        {
+            RegisterUsersEfo registerUser = await _registerUsersService.GetRegisterUserByEmail(email);
+
+            if (registerUser == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+
+            return StatusCode(StatusCodes.Status200OK, registerUser);
+        }
+
         // POST registerusers
         [HttpPost]
         [ProducesResponseType(typeof(RegisterUsersEfo), StatusCodes.Status201Created)]
@@ -86,7 +106,6 @@ namespace CVExpress.API.Controllers
             return StatusCode(StatusCodes.Status400BadRequest);
         }
 
-        [Authorize(Policy = "AdminAndUser")]
         // PUT registerusers/{email}/updatepassword
         [HttpPut("{email}/updatepassword")]
         [ProducesResponseType(typeof(RegisterUsersEfo), StatusCodes.Status201Created)]
