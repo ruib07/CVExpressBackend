@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVExpress.EntityFramework.Migrations
 {
     [DbContext(typeof(CVExpressDbContext))]
-    [Migration("20240207123737_CVExpressDbV1")]
+    [Migration("20240217212644_CVExpressDbV1")]
     partial class CVExpressDbV1
     {
         /// <inheritdoc />

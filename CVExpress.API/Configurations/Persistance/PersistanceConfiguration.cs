@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CVExpress.API.Configurations.Persistance
 {
+    #region Database Configuration
+
     public static class PersistanceConfiguration
     {
         public static void AddCustomDatabaseConfiguration(this IServiceCollection services, IConfiguration configuration)
@@ -25,4 +27,6 @@ namespace CVExpress.API.Configurations.Persistance
             });
         }
     }
+
+    #endregion
 }

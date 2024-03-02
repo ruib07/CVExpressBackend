@@ -7,14 +7,22 @@ using System.Security.Cryptography;
 
 namespace CVExpress.Services.Services
 {
+    #region Register Users Service
+
     public class RegisterUsersService : IRegisterUsersService
     {
         private readonly CVExpressDbContext _context;
+
+        #region Register Users Service Constructors
 
         public RegisterUsersService(CVExpressDbContext context)
         {
             _context = context;
         }
+
+        #endregion
+
+        #region Register Users GET Services
 
         public async Task<List<RegisterUsersEfo>> GetAllRegisterUsers()
         {
@@ -47,6 +55,10 @@ namespace CVExpress.Services.Services
             return registerUser;
         }
 
+        #endregion
+
+        #region Register Users POST Service
+
         public async Task<RegisterUsersEfo> SendRegisterUser(RegisterUsersEfo registerUser)
         {
             try
@@ -72,6 +84,10 @@ namespace CVExpress.Services.Services
                 throw new Exception($"Erro ao enviar registo de utilizador: {ex.Message}");
             }
         }
+
+        #endregion
+
+        #region Register Users PUT Services
 
         public async Task<RegisterUsersEfo> UpdatePassword(string email, string newPassword, string confirmNewPassword)
         {
@@ -133,6 +149,10 @@ namespace CVExpress.Services.Services
             }
         }
 
+        #endregion
+
+        #region Register Users DELETE Service
+
         public async Task DeleteRegisterUser(int id)
         {
             RegisterUsersEfo? registerUser = await _context.RegisterUsers
@@ -146,6 +166,10 @@ namespace CVExpress.Services.Services
             _context.RegisterUsers.Remove(registerUser);
             await _context.SaveChangesAsync();
         }
+
+        #endregion
+
+        #region Hash Register Users Password
 
         private string HashPassword(string password)
         {
@@ -167,5 +191,9 @@ namespace CVExpress.Services.Services
             Array.Copy(hash, 0, hashBytes, 16, 32);
             return Convert.ToBase64String(hashBytes);
         }
+
+        #endregion
     }
+
+    #endregion
 }

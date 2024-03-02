@@ -5,14 +5,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CVExpress.Services.Services
 {
+    #region Habilitations Service
+
     public class HabilitationsService : IHabilitationsService
     {
         private readonly CVExpressDbContext _context;
+
+        #region Habilitations Service Constructors
 
         public HabilitationsService(CVExpressDbContext context)
         {
             _context = context;
         }
+
+        #endregion
+
+        #region Habilitations GET Services
 
         public async Task<List<HabilitationsEfo>> GetAllHabilitations()
         {
@@ -32,6 +40,10 @@ namespace CVExpress.Services.Services
             return habilitation;
         }
 
+        #endregion
+
+        #region Habilitations POST Service
+
         public async Task<HabilitationsEfo> SendHabilitation(HabilitationsEfo habilitation)
         {
             try
@@ -46,6 +58,10 @@ namespace CVExpress.Services.Services
                 throw new Exception($"Erro a enviar habilitação: {ex.Message}");
             }
         }
+
+        #endregion
+
+        #region Habilitations PUT Service
 
         public async Task<HabilitationsEfo> UpdateHabilitation(int id, HabilitationsEfo updateHabilitation)
         {
@@ -75,6 +91,10 @@ namespace CVExpress.Services.Services
             }
         }
 
+        #endregion
+
+        #region Habilitations DELETE Service
+
         public async Task DeleteHabilitation(int id)
         {
             HabilitationsEfo? habilitation = await _context.Habilitations
@@ -88,5 +108,9 @@ namespace CVExpress.Services.Services
             _context.Habilitations.Remove(habilitation);
             await _context.SaveChangesAsync();
         }
+
+        #endregion
     }
+
+    #endregion
 }

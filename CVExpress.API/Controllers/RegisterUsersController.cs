@@ -8,6 +8,8 @@ using System.Net.Mime;
 
 namespace CVExpress.API.Controllers
 {
+    #region Register Users Controllers
+
     [Route("[controller]")]
     [ApiController]
     public class RegisterUsersController : ControllerBase
@@ -18,6 +20,8 @@ namespace CVExpress.API.Controllers
         {
             _registerUsersService = registerUsersService;
         }
+
+        #region GET Controllers
 
         [Authorize(Policy = "AdminAndUser")]
         // GET registerusers
@@ -81,6 +85,10 @@ namespace CVExpress.API.Controllers
             return StatusCode(StatusCodes.Status200OK, registerUser);
         }
 
+        #endregion
+
+        #region POST Controller
+
         // POST registerusers
         [HttpPost]
         [ProducesResponseType(typeof(RegisterUsersEfo), StatusCodes.Status201Created)]
@@ -105,6 +113,10 @@ namespace CVExpress.API.Controllers
 
             return StatusCode(StatusCodes.Status400BadRequest);
         }
+
+        #endregion
+
+        #region PUT Controllers
 
         // PUT registerusers/{email}/updatepassword
         [HttpPut("{email}/updatepassword")]
@@ -161,6 +173,10 @@ namespace CVExpress.API.Controllers
             }
         }
 
+        #endregion
+
+        #region DELETE Controller
+
         [Authorize(Policy = "Admin")]
         // DELETE registerusers/{id}
         [HttpDelete("{id}")]
@@ -183,5 +199,9 @@ namespace CVExpress.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        #endregion
     }
+
+    #endregion
 }

@@ -5,6 +5,8 @@ using System.Text;
 
 namespace CVExpress.API.Configurations.Security
 {
+    #region JWT Token Configuration
+
     public static class SecurityConfiguration
     {
         public static void AddCustomApiSecurity(this IServiceCollection services,
@@ -36,4 +38,6 @@ namespace CVExpress.API.Configurations.Security
             });
         }
     }
+
+    #endregion
 }

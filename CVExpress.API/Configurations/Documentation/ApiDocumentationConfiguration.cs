@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 
 namespace CVExpress.API.Configurations.Documentation
 {
+    #region API Documentation Config
+    
     public static class ApiDocumentationConfiguration
     {
         public static void AddCustomApiDocumentation(this IServiceCollection services)
@@ -59,4 +61,6 @@ namespace CVExpress.API.Configurations.Documentation
             });
         }
     }
+
+    #endregion
 }

@@ -5,6 +5,8 @@ using Scrutor;
 
 namespace CVExpress.Services
 {
+    #region Register Services
+
     public static class DependencyRegister
     {
         public static void AddCustomServiceDependencyRegister(this IServiceCollection services, IConfiguration configuration)
@@ -60,4 +62,6 @@ namespace CVExpress.Services
             .WithScopedLifetime());
         }
     }
+
+    #endregion
 }

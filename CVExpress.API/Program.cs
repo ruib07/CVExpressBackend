@@ -8,6 +8,8 @@ using CVExpress.Services.Services;
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 
+#region Services
+
 builder.Services.AddControllers();
 
 builder.Services.AddCustomApiDocumentation();
@@ -42,6 +44,8 @@ builder.Services.AddCors(options =>
                  .AllowAnyMethod();
     });
 });
+
+#endregion
 
 var app = builder.Build();
 

@@ -7,14 +7,22 @@ using System.Security.Cryptography;
 
 namespace CVExpress.Services.Services
 {
+    #region Users Service
+
     public class UsersService : IUsersService
     {
         private readonly CVExpressDbContext _context;
+
+        #region Users Service Constructors
 
         public UsersService(CVExpressDbContext context)
         {
             _context = context;
         }
+
+        #endregion
+
+        #region Users GET Services
 
         public async Task<List<UsersEfo>> GetAllUsers()
         {
@@ -34,6 +42,10 @@ namespace CVExpress.Services.Services
             return user;
         }
 
+        #endregion
+
+        #region Users POST Service
+
         public async Task<UsersEfo> SendUser(UsersEfo user)
         {
             try
@@ -50,6 +62,10 @@ namespace CVExpress.Services.Services
                 throw new Exception($"Erro a enviar utilizador: {ex.Message}");
             }
         }
+
+        #endregion
+
+        #region Users PUT Service
 
         public async Task<UsersEfo> UpdateUser(int id, UsersEfo updateUser)
         {
@@ -82,6 +98,10 @@ namespace CVExpress.Services.Services
             }
         }
 
+        #endregion
+
+        #region Users DELETE Service
+
         public async Task DeleteUser(int id)
         {
             UsersEfo? user = await _context.Users
@@ -95,6 +115,10 @@ namespace CVExpress.Services.Services
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
+
+        #endregion
+
+        #region Hash Users Password 
 
         private string HashPassword(string password)
         {
@@ -116,5 +140,9 @@ namespace CVExpress.Services.Services
             Array.Copy(hash, 0, hashBytes, 16, 32);
             return Convert.ToBase64String(hashBytes);
         }
+
+        #endregion
     }
+
+    #endregion
 }

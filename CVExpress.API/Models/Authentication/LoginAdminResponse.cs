@@ -2,6 +2,8 @@
 {
     public class LoginAdminResponse
     {
+        #region Login Admin Constructors
+
         public LoginAdminResponse()
         {
             TokenType = "Bearer";
@@ -12,7 +14,13 @@
             AccessToken = accessToken;
         }
 
+        #endregion
+
+        #region Login Admin Response Attributes
+
         public string AccessToken { get; set; }
         public string TokenType { get; set; }
+
+        #endregion
     }
 }

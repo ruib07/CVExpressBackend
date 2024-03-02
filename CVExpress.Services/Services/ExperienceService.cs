@@ -5,14 +5,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CVExpress.Services.Services
 {
+    #region Experience Services
+
     public class ExperienceService : IExperienceService
     {
         private readonly CVExpressDbContext _context;
+
+        #region Experience Service Constructors
 
         public ExperienceService(CVExpressDbContext context)
         {
             _context = context;
         }
+
+        #endregion
+
+        #region Experience GET Services
 
         public async Task<List<ExperienceEfo>> GetAllExperiences()
         {
@@ -32,6 +40,10 @@ namespace CVExpress.Services.Services
             return experience;
         }
 
+        #endregion
+
+        #region Experience POST Service
+
         public async Task<ExperienceEfo> SendExperience(ExperienceEfo experience)
         {
             try
@@ -46,6 +58,10 @@ namespace CVExpress.Services.Services
                 throw new Exception($"Erro a enviar experiência: {ex.Message}");
             }
         }
+
+        #endregion
+
+        #region Experience PUT Service
 
         public async Task<ExperienceEfo> UpdateExperience(int id, ExperienceEfo updateExperience)
         {
@@ -75,6 +91,10 @@ namespace CVExpress.Services.Services
             }
         }
 
+        #endregion
+
+        #region Experience DELETE Service
+
         public async Task DeleteExperience(int id)
         {
             ExperienceEfo? experience = await _context.Experiences
@@ -88,5 +108,9 @@ namespace CVExpress.Services.Services
             _context.Experiences.Remove(experience);
             await _context.SaveChangesAsync();
         }
+
+        #endregion
     }
+
+    #endregion
 }

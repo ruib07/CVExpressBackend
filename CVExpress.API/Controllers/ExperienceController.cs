@@ -8,6 +8,8 @@ using System.Net.Mime;
 
 namespace CVExpress.API.Controllers
 {
+    #region Experience Controllers
+
     [Route("[controller]")]
     [ApiController]
     public class ExperienceController : ControllerBase
@@ -18,6 +20,8 @@ namespace CVExpress.API.Controllers
         {
             _experienceService = experienceService;
         }
+
+        #region GET Controllers
 
         [Authorize(Policy = "AdminAndUser")]
         // GET experiences
@@ -61,6 +65,10 @@ namespace CVExpress.API.Controllers
             return StatusCode(StatusCodes.Status200OK, experience);
         }
 
+        #endregion
+
+        #region POST Controller
+
         // POST experiences
         [HttpPost]
         [ProducesResponseType(typeof(ExperienceEfo), StatusCodes.Status201Created)]
@@ -85,6 +93,10 @@ namespace CVExpress.API.Controllers
 
             return StatusCode(StatusCodes.Status400BadRequest);
         }
+
+        #endregion
+
+        #region PUT Controller
 
         [Authorize(Policy = "AdminAndUser")]
         // PUT experiences/{id}
@@ -114,6 +126,10 @@ namespace CVExpress.API.Controllers
             }
         }
 
+        #endregion
+
+        #region DELETE Controller
+
         [Authorize(Policy = "Admin")]
         // DELETE experiences/{id}
         [HttpDelete("{id}")]
@@ -136,5 +152,9 @@ namespace CVExpress.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        #endregion
     }
+
+    #endregion
 }

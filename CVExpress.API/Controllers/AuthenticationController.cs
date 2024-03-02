@@ -14,6 +14,8 @@ using System.Text;
 
 namespace CVExpress.API.Controllers
 {
+    #region Authentication Controllers
+
     [ApiExplorerSettings(GroupName = ApiConstants.DocumentationGroupAuthentication)]
     public class AuthenticationController : ControllerBase
     {
@@ -25,6 +27,8 @@ namespace CVExpress.API.Controllers
             _context = context;
             _jwtSettings = jwtSettings;
         }
+
+        #region UserLogin
 
         [AllowAnonymous]
         [HttpPost("/userlogin")]
@@ -94,6 +98,9 @@ namespace CVExpress.API.Controllers
             return Ok(new LoginUserResponse(userJwtToken));
         }
 
+        #endregion
+
+        #region LoginAdmin
 
         [AllowAnonymous]
         [HttpPost("/adminlogin")]
@@ -133,5 +140,9 @@ namespace CVExpress.API.Controllers
             }
             return Unauthorized();
         }
+
+        #endregion
     }
+
+    #endregion
 }
